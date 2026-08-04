@@ -21,27 +21,24 @@ export default function Contacto() {
         </p>
 
         <WhatsappButton variant="green" className="text-lg">
-          Escribinos: 3546 500950
+          Escribinos: 3546 535551
         </WhatsappButton>
 
         <div className="flex flex-col gap-2 text-foreground">
           <p>
             <span className="text-muted">Instagram:</span>{" "}
             <a
-              href="https://instagram.com/steelmafa"
+              href="https://instagram.com/icccalamuchita"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent-orange transition-colors hover:text-accent-orange/80"
             >
-              @steelmafa
+              @icccalamuchita
             </a>
           </p>
-          <p>
-            <span className="text-muted">Dirección:</span> San Luis 512,
-            Villa Ciudad Parque
-          </p>
+          
           <p className="text-muted">
-            Zona de trabajo: Valle de Calamuchita y alrededores
+            Zona de trabajo: Valle de Calamuchita
           </p>
         </div>
       </motion.div>

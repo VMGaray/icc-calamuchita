@@ -26,65 +26,35 @@ function IconWrapper({ children }: { children: React.ReactNode }) {
 
 const servicios: Servicio[] = [
   {
-    title: "Cartelería metálica",
+    title: "Movimiento de suelos",
     description:
-      "Diseño y fabricación de carteles en chapa y hierro para comercios, campos y viviendas.",
+      "Excavación, nivelación y relleno con maquinaria propia para obras y proyectos en todo el Valle de Calamuchita.",
     icon: (
       <IconWrapper>
-        <rect x="3" y="6" width="18" height="10" rx="1" />
-        <path d="M8 20h8M12 16v4" />
+        <path d="M2 20h20M4 20l3-7h4l2 4h4l3-4" />
+        <path d="M9 13V7l3-3 3 3v6" />
       </IconWrapper>
     ),
   },
   {
-    title: "Corte CNC por plasma",
+    title: "Piletas",
     description:
-      "Cortes de precisión en metal a partir de diseños digitales, para piezas y detalles a medida.",
+      "Construcción y mantenimiento de piletas, desde la excavación hasta la terminación final.",
     icon: (
       <IconWrapper>
-        <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z" />
+        <path d="M3 16c1.5-1.3 3-1.3 4.5 0s3 1.3 4.5 0 3-1.3 4.5 0 3 1.3 4.5 0" />
+        <rect x="4" y="4" width="16" height="10" rx="1.5" />
       </IconWrapper>
     ),
   },
   {
-    title: "Soldadura",
+    title: "Tratamiento de aguas residuales",
     description:
-      "Hierro, aluminio, inoxidable, bronce y cobre: uniones resistentes y prolijas para todo tipo de proyectos.",
+      "Diseño e instalación de sistemas de saneamiento y tratamiento de efluentes para viviendas y establecimientos.",
     icon: (
       <IconWrapper>
-        <path d="M3 21 21 3M14 3h7v7M7 14l3 3" />
-      </IconWrapper>
-    ),
-  },
-  {
-    title: "Rejas y portones",
-    description:
-      "Fabricación e instalación de rejas y portones a medida, combinando seguridad y diseño.",
-    icon: (
-      <IconWrapper>
-        <rect x="3" y="4" width="18" height="16" rx="1" />
-        <path d="M8 4v16M13 4v16M18 4v16M3 10h18" />
-      </IconWrapper>
-    ),
-  },
-  {
-    title: "Escaleras metálicas",
-    description:
-      "Escaleras interiores y exteriores en hierro, con estructura resistente y terminaciones prolijas.",
-    icon: (
-      <IconWrapper>
-        <path d="M4 20h4v-4h4v-4h4v-4h4" />
-      </IconWrapper>
-    ),
-  },
-  {
-    title: "Estructuras a medida",
-    description:
-      "Estructuras metálicas para naves, techos y proyectos especiales, diseñadas a tu necesidad.",
-    icon: (
-      <IconWrapper>
-        <path d="M4 21V9l8-5 8 5v12" />
-        <path d="M4 21h16M9 21v-6h6v6" />
+        <path d="M12 2c3 4 5 7.2 5 10a5 5 0 0 1-10 0c0-2.8 2-6 5-10Z" />
+        <path d="M8 21h8" />
       </IconWrapper>
     ),
   },
@@ -105,7 +75,7 @@ export default function Servicios() {
             NUESTROS SERVICIOS
           </h2>
           <p className="mt-3 text-muted">
-            Trabajos en metal con precisión y terminaciones de calidad.
+            Movimiento de suelos, piletas y saneamiento en el Valle de Calamuchita.
           </p>
         </motion.div>
 

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import logo from "../../public/logo_charlie.jpeg";
 
 const links = [
   { href: "#hero", label: "Inicio" },
@@ -18,13 +17,17 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/70 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <a href="#hero" className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white">
-            <Image src={logo} alt="Steel Mafa" width={40} height={40} className="h-9 w-9 object-contain" />
-          </span>
+          <Image
+            src="/icc-logo.webp"
+            alt="ICC - Ing. Carbone Construcciones"
+            width={40}
+            height={40}
+            className="h-10 w-10"
+          />
           <span className="font-display text-2xl tracking-wide text-foreground">
-            STEEL MAFA
+            ICC CALAMUCHITA
           </span>
         </a>
 

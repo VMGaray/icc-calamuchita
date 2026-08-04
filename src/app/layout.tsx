@@ -17,9 +17,9 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Steel Mafa | Herrería en el Valle de Calamuchita",
+  title: "ICC Calamuchita | Movimiento de suelos, piletas y saneamiento",
   description:
-    "Steel Mafa - Herrero en Villa Ciudad Parque, Valle de Calamuchita. Cartelería metálica, corte CNC por plasma, soldadura, rejas, portones, escaleras y estructuras a medida.",
+    "ICC Calamuchita - Movimiento de suelos, construcción de piletas y tratamiento de aguas residuales en el Valle de Calamuchita, Córdoba.",
 };
 
 export default function RootLayout({

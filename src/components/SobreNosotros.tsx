@@ -1,42 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { motion, useInView } from "framer-motion";
-import logo from "../../public/logo_charlie.jpeg";
-
-function Counter({ to, suffix }: { to: number; suffix: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
-  const [value, setValue] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-
-    const duration = 1500;
-    const steps = 30;
-    const increment = to / steps;
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= to) {
-        setValue(to);
-        clearInterval(timer);
-      } else {
-        setValue(Math.round(current));
-      }
-    }, duration / steps);
-
-    return () => clearInterval(timer);
-  }, [inView, to]);
-
-  return (
-    <span ref={ref} className="font-display text-5xl text-accent-orange sm:text-6xl">
-      {value}
-      {suffix}
-    </span>
-  );
-}
+import { motion } from "framer-motion";
 
 export default function SobreNosotros() {
   return (
@@ -53,22 +17,18 @@ export default function SobreNosotros() {
             SOBRE NOSOTROS
           </h2>
           <p className="text-muted sm:text-lg">
-            En Steel Mafa trabajamos el hierro con precisión y dedicación.
-            Con años de experiencia en el Valle de Calamuchita, fabricamos
-            rejas, portones, estructuras y trabajos en chapa a medida para
-            clientes de toda la región. Cada trabajo es único.
+            ICC Calamuchita es una empresa del Valle de Calamuchita dedicada
+            al movimiento de suelos, la construcción de piletas y el
+            tratamiento de aguas residuales. Trabajamos con maquinaria propia
+            para acompañar cada obra de principio a fin, con un servicio
+            prolijo y adaptado a las necesidades de cada cliente.
           </p>
 
-          <div className="flex justify-center gap-10 md:justify-start">
-            <div className="flex flex-col items-center md:items-start">
-              <Counter to={10} suffix="+" />
-              <span className="text-sm text-muted">años de experiencia</span>
-            </div>
-            <div className="flex flex-col items-center md:items-start">
-              <Counter to={500} suffix="+" />
-              <span className="text-sm text-muted">trabajos realizados</span>
-            </div>
-          </div>
+          <ul className="flex flex-col gap-2 text-left text-muted sm:text-lg">
+            <li>• Movimiento de suelos</li>
+            <li>• Construcción de piletas</li>
+            <li>• Tratamiento de aguas residuales</li>
+          </ul>
         </motion.div>
 
         <motion.div
@@ -78,14 +38,19 @@ export default function SobreNosotros() {
           transition={{ duration: 0.6 }}
           className="flex justify-center"
         >
-          <span className="flex h-56 w-56 items-center justify-center overflow-hidden rounded-full bg-white shadow-[0_0_50px_rgba(212,82,10,0.15)] sm:h-72 sm:w-72">
-            <Image
-              src={logo}
-              alt="Steel Mafa"
-              width={240}
-              height={240}
-              className="h-48 w-48 object-contain sm:h-60 sm:w-60"
-            />
+          <span className="flex h-56 w-56 items-center justify-center rounded-full border border-border bg-surface shadow-[0_0_50px_rgba(212,82,10,0.15)] sm:h-72 sm:w-72">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-24 w-24 text-accent-orange sm:h-32 sm:w-32"
+            >
+              <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z" />
+              <circle cx="12" cy="10" r="2.5" />
+            </svg>
           </span>
         </motion.div>
       </div>

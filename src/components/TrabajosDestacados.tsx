@@ -4,37 +4,33 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { motion } from "framer-motion";
+import type { GalleryCategory } from "@/data/gallery";
 
-const trabajos = [
+type Trabajo = {
+  id: number;
+  title: string;
+  category: GalleryCategory;
+  image: string | null;
+};
+
+const trabajos: Trabajo[] = [
   {
     id: 1,
-    title: "Portón corredizo a medida",
-    image: "/gallery/portones/portones-02.webp",
+    title: "Movimiento de suelos",
+    category: "movimiento-suelos",
+    image: null,
   },
   {
     id: 2,
-    title: "Reja protectora exterior",
-    image: "/gallery/estructuras/estruc-03.webp",
+    title: "Piletas",
+    category: "piletas",
+    image: null,
   },
   {
     id: 3,
-    title: "Cartelería para comercio",
-    image: "/gallery/carteleria/cartel-01.webp",
-  },
-  {
-    id: 4,
-    title: "Estructura de techo",
-    image: "/gallery/estructuras/estruc-01.webp",
-  },
-  {
-    id: 5,
-    title: "Reja de seguridad",
-    image: "/gallery/otros/otros-08.webp",
-  },
-  {
-    id: 6,
-    title: "Baranda de acero inoxidable",
-    image: "/gallery/barandas/barandas-01.webp",
+    title: "Tratamiento de aguas residuales",
+    category: "tratamiento-residuales",
+    image: null,
   },
 ];
 
@@ -73,7 +69,8 @@ export default function TrabajosDestacados() {
             TRABAJOS DESTACADOS
           </h2>
           <p className="mt-3 text-muted">
-            Una selección de proyectos realizados por Steel Mafa.
+            Muy pronto vas a poder ver acá nuestros trabajos realizados en el
+            Valle de Calamuchita.
           </p>
         </motion.div>
 
@@ -85,14 +82,33 @@ export default function TrabajosDestacados() {
                   key={trabajo.id}
                   className="mr-4 flex min-w-0 flex-[0_0_85%] flex-col gap-3 sm:flex-[0_0_45%] lg:flex-[0_0_31%]"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-surface">
-                    <Image
-                      src={trabajo.image}
-                      alt={trabajo.title}
-                      fill
-                      sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 31vw"
-                      className="object-cover"
-                    />
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-dashed border-border bg-surface">
+                    {trabajo.image ? (
+                      <Image
+                        src={trabajo.image}
+                        alt={trabajo.title}
+                        fill
+                        sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 31vw"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-muted">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={1.5}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-10 w-10"
+                        >
+                          <rect x="3" y="3" width="18" height="18" rx="2" />
+                          <circle cx="9" cy="9" r="2" />
+                          <path d="m21 15-5-5L5 21" />
+                        </svg>
+                        <span className="text-xs">Próximamente</span>
+                      </div>
+                    )}
                   </div>
                   <span className="text-sm font-medium text-foreground">
                     {trabajo.title}

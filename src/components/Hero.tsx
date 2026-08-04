@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
-import logo from "../../public/logo_charlie.jpeg";
+import Image from "next/image";
 import WhatsappButton from "./WhatsappButton";
 
 export default function Hero() {
@@ -15,7 +14,8 @@ export default function Hero() {
 
       <video
         className="absolute inset-0 -z-20 h-full w-full object-cover"
-        src="/hero-video.mp4"
+        src="/videos/hero.mp4"
+        poster="/videos/hero-poster.webp"
         autoPlay
         muted
         loop
@@ -24,21 +24,28 @@ export default function Hero() {
 
       <div className="absolute inset-0 -z-10 bg-black/60" />
 
-      <motion.span
-        initial={{ opacity: 0, y: -20 }}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-full bg-white shadow-[0_0_40px_rgba(0,0,0,0.5)] sm:h-40 sm:w-40"
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative flex items-center justify-center"
+        style={{
+          width: "clamp(6rem, 18vw, 12.5rem)",
+          height: "clamp(6rem, 18vw, 12.5rem)",
+        }}
       >
-        <Image
-          src={logo}
-          alt="Logo Steel Mafa"
-          width={140}
-          height={140}
-          priority
-          className="h-28 w-28 object-contain sm:h-36 sm:w-36"
-        />
-      </motion.span>
+        {/* rgba mirrors --accent-orange (#f0b000); box-shadow can't read a CSS var's alpha channel */}
+        <div className="absolute inset-0 rounded-full shadow-[0_0_70px_22px_rgba(240,176,0,0.35)]" />
+        <div className="relative h-full w-full overflow-hidden rounded-full">
+          <Image
+            src="/icc-logo.webp"
+            alt="ICC - Ing. Carbone Construcciones"
+            fill
+            priority
+            className="object-cover"
+          />
+        </div>
+      </motion.div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -46,11 +53,14 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.15 }}
         className="flex flex-col gap-3"
       >
-        <h1 className="font-display text-7xl tracking-wide text-foreground sm:text-9xl">
-          STEEL <span className="text-accent-orange">MAFA</span>
+        <h1 className="font-display text-5xl tracking-wide text-foreground sm:text-7xl lg:text-8xl">
+          ICC{" "}
+          <span className="text-accent-orange [text-shadow:0_0_30px_rgba(240,176,0,0.45)]">
+            CALAMUCHITA
+          </span>
         </h1>
         <p className="text-lg text-muted sm:text-xl">
-          Hierro, precisión y calidad
+          Movimiento de suelo, piletas y saneamiento en el Valle de Calamuchita
         </p>
       </motion.div>
 
