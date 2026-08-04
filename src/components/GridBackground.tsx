@@ -1,0 +1,83 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
+export default function GridBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let t = 0;
+    let animId: number;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const cols = 20;
+      const rows = 14;
+      const spacingX = canvas.width / cols;
+      const spacingY = canvas.height / rows;
+
+      ctx.lineWidth = 0.5;
+
+      for (let i = 0; i <= cols; i++) {
+        for (let j = 0; j <= rows; j++) {
+          const x = i * spacingX;
+          const baseY = j * spacingY;
+          const wave = Math.sin(i * 0.5 + t) * 8 + Math.cos(j * 0.5 + t) * 8;
+          const y = baseY + wave;
+
+          const alpha = 0.1 + Math.abs(Math.sin(i + j + t)) * 0.25;
+          ctx.beginPath();
+          ctx.arc(x, y, 1, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(212,82,10,${alpha})`;
+          ctx.fill();
+
+          if (i < cols) {
+            const nx = (i + 1) * spacingX;
+            const nWave =
+              Math.sin((i + 1) * 0.5 + t) * 8 + Math.cos(j * 0.5 + t) * 8;
+            const ny = baseY + nWave;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(nx, ny);
+            ctx.strokeStyle = "rgba(212,82,10,0.12)";
+            ctx.stroke();
+          }
+        }
+      }
+
+      t += 0.018;
+      animId = requestAnimationFrame(draw);
+    };
+
+    draw();
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 0,
+        pointerEvents: "none",
+        opacity: 0.6,
+      }}
+    />
+  );
+}
