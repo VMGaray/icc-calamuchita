@@ -16,27 +16,28 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/70 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <a href="#hero" className="flex items-center gap-3">
+    // El navbar se mantiene oscuro como contraste contra el resto amarillo
+    // y para que el logo horizontal (texto negro) se lea bien.
+    <header className="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-[#0a0a0a]/85 backdrop-blur-md">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <a href="#hero" className="flex items-center">
           <Image
-            src="/icc-logo.webp"
+            src="/icc-logo-horizontal-white.png"
             alt="ICC - Ing. Carbone Construcciones"
-            width={40}
-            height={40}
-            className="h-10 w-10"
+            width={1600}
+            height={414}
+            priority
+            className="h-11 w-auto md:h-12"
+            style={{ width: "auto" }}
           />
-          <span className="font-display text-2xl tracking-wide text-foreground">
-            ICC CALAMUCHITA
-          </span>
         </a>
 
-        <ul className="hidden gap-8 md:flex">
+        <ul className="hidden gap-6 md:flex lg:gap-8">
           {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-muted transition-colors hover:text-accent-orange"
+                className="text-[13px] font-medium text-neutral-300 transition-colors hover:text-white lg:text-sm"
               >
                 {link.label}
               </a>
@@ -51,20 +52,20 @@ export default function Navbar() {
           aria-label="Abrir menú"
           aria-expanded={open}
         >
-          <span className="h-0.5 w-6 bg-foreground" />
-          <span className="h-0.5 w-6 bg-foreground" />
-          <span className="h-0.5 w-6 bg-foreground" />
+          <span className="h-0.5 w-6 bg-white" />
+          <span className="h-0.5 w-6 bg-white" />
+          <span className="h-0.5 w-6 bg-white" />
         </button>
       </nav>
 
       {open && (
-        <ul className="flex flex-col gap-1 border-t border-border bg-background px-6 py-4 md:hidden">
+        <ul className="flex flex-col gap-1 border-t border-white/10 bg-[#0a0a0a] px-6 py-4 md:hidden">
           {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block py-2 text-sm font-medium text-muted transition-colors hover:text-accent-orange"
+                className="block py-2 text-sm font-medium text-neutral-300 transition-colors hover:text-white"
               >
                 {link.label}
               </a>

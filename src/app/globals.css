@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --surface: rgba(26, 26, 26, 0.85);
-  --foreground: #f2f2f2;
-  --muted: #a3a3a3;
-  --accent-orange: #f0b000;
+  /* Fondo de marca amarillo (#F0B000) para toda la web salvo Hero y Navbar */
+  --background: #f0b000;
+  /* Tarjetas: blanco translúcido que se eleva sobre el amarillo */
+  --surface: rgba(255, 255, 255, 0.62);
+  /* Texto principal: casi negro para leerse sobre amarillo */
+  --foreground: #171717;
+  /* Texto secundario: gris muy oscuro, mantiene contraste AA sobre amarillo */
+  --muted: #333333;
+  /* Acento: el naranja de marca no contrasta sobre amarillo -> negro sólido */
+  --accent-orange: #111111;
   --accent-green: #25d366;
-  --border: rgba(255, 255, 255, 0.1);
+  --border: rgba(0, 0, 0, 0.16);
 }
 
 @theme inline {
@@ -19,7 +24,7 @@
   --color-accent-green: var(--accent-green);
   --color-border: var(--border);
   --font-sans: var(--font-inter);
-  --font-display: var(--font-bebas);
+  --font-display: var(--font-stencil);
 }
 
 html {

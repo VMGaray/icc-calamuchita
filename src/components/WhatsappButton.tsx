@@ -2,7 +2,9 @@ const WHATSAPP_URL =
   "https://wa.me/543546500950?text=Hola%20ICC%20Calamuchita%2C%20quiero%20hacer%20una%20consulta";
 
 const variants = {
-  orange: "bg-accent-orange text-background hover:bg-accent-orange/85",
+  // Sólo se usa en el Hero (fondo de video oscuro): mantiene el amarillo de
+  // marca con texto oscuro para resaltar sobre el overlay.
+  orange: "bg-[#f0b000] text-[#0a0a0a] hover:bg-[#f0b000]/85",
   green: "bg-accent-green text-white hover:bg-accent-green/85",
 };
 

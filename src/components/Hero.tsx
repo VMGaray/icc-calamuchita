@@ -1,10 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import WhatsappButton from "./WhatsappButton";
 
 export default function Hero() {
+  // Cuando el video termina, se congela en esta foto de fondo y no vuelve a
+  // reproducirse (sólo se reinicia si el usuario recarga la página).
+  const [videoEnded, setVideoEnded] = useState(false);
+
   return (
     <section
       id="hero"
@@ -18,11 +23,38 @@ export default function Hero() {
         poster="/videos/hero-poster.webp"
         autoPlay
         muted
-        loop
         playsInline
+        onEnded={() => setVideoEnded(true)}
       />
 
-      <div className="absolute inset-0 -z-10 bg-black/60" />
+      <AnimatePresence>
+        {videoEnded && (
+          <motion.div
+            key="hero-equipos"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.9, ease: "easeInOut" }}
+            className="absolute inset-0 -z-20"
+          >
+            <Image
+              src="/videos/hero-equipos.webp"
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Overlay oscuro: 60% con el video; se oscurece a 72% cuando queda fija
+          la foto final (más detalle) para mantener la legibilidad del título. */}
+      <motion.div
+        className="absolute inset-0 -z-10 bg-black"
+        initial={false}
+        animate={{ opacity: videoEnded ? 0.72 : 0.6 }}
+        transition={{ duration: 0.9, ease: "easeInOut" }}
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -38,7 +70,7 @@ export default function Hero() {
         <div className="absolute inset-0 rounded-full shadow-[0_0_70px_22px_rgba(240,176,0,0.35)]" />
         <div className="relative h-full w-full overflow-hidden rounded-full">
           <Image
-            src="/icc-logo.webp"
+            src="/icc-logo1a.webp"
             alt="ICC - Ing. Carbone Construcciones"
             fill
             priority
@@ -53,13 +85,15 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.15 }}
         className="flex flex-col gap-3"
       >
-        <h1 className="font-display text-5xl tracking-wide text-foreground sm:text-7xl lg:text-8xl">
+        {/* Hero excepción: fondo de video con overlay oscuro, texto claro y
+            acento amarillo de marca (no aplica el esquema amarillo global). */}
+        <h1 className="font-display text-5xl tracking-wide text-white sm:text-7xl lg:text-8xl">
           ICC{" "}
-          <span className="text-accent-orange [text-shadow:0_0_30px_rgba(240,176,0,0.45)]">
+          <span className="text-[#f0b000] [text-shadow:0_0_30px_rgba(240,176,0,0.45)]">
             CALAMUCHITA
           </span>
         </h1>
-        <p className="text-lg text-muted sm:text-xl">
+        <p className="text-lg text-white/80 sm:text-xl">
           Movimiento de suelo, piletas y saneamiento en el Valle de Calamuchita
         </p>
       </motion.div>
@@ -75,7 +109,7 @@ export default function Hero() {
       <motion.a
         href="#servicios"
         aria-label="Scroll hacia servicios"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
       >

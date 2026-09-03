@@ -10,7 +10,6 @@ export default function Home() {
     <>
       <Hero />
       <Servicios />
-      <TrabajosDestacados />
       <Galeria />
       <SobreNosotros />
       <Contacto />

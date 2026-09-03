@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Bebas_Neue } from "next/font/google";
+import { Inter, Big_Shoulders_Stencil } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,10 +10,15 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas",
-  weight: "400",
+// Fuente stencil sólo para títulos grandes (clase font-display).
+const bigShouldersStencil = Big_Shoulders_Stencil({
+  variable: "--font-stencil",
+  weight: "700",
   subsets: ["latin"],
+  display: "swap",
+  fallback: ["Impact", "Haettenschweiler", "Arial Narrow Bold", "sans-serif"],
+  // Google no publica métricas para esta fuente; evita el warning de fallback.
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -30,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${inter.variable} ${bebasNeue.variable} h-full antialiased`}
+      className={`${inter.variable} ${bigShouldersStencil.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <GridBackground />

@@ -37,10 +37,10 @@ export default function GridBackground() {
           const wave = Math.sin(i * 0.5 + t) * 8 + Math.cos(j * 0.5 + t) * 8;
           const y = baseY + wave;
 
-          const alpha = 0.1 + Math.abs(Math.sin(i + j + t)) * 0.25;
+          const alpha = 0.06 + Math.abs(Math.sin(i + j + t)) * 0.16;
           ctx.beginPath();
           ctx.arc(x, y, 1, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(212,82,10,${alpha})`;
+          ctx.fillStyle = `rgba(0,0,0,${alpha})`;
           ctx.fill();
 
           if (i < cols) {
@@ -51,7 +51,7 @@ export default function GridBackground() {
             ctx.beginPath();
             ctx.moveTo(x, y);
             ctx.lineTo(nx, ny);
-            ctx.strokeStyle = "rgba(212,82,10,0.12)";
+            ctx.strokeStyle = "rgba(0,0,0,0.08)";
             ctx.stroke();
           }
         }

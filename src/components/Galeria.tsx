@@ -63,7 +63,7 @@ export default function Galeria() {
               className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
                 filter === f.key
                   ? "bg-accent-orange text-background"
-                  : "bg-[#1a1a1a] text-muted hover:text-foreground"
+                  : "border border-border text-foreground hover:border-accent-orange"
               }`}
             >
               {f.label}
@@ -132,7 +132,7 @@ export default function Galeria() {
                 type="button"
                 onClick={() => setSelected(null)}
                 aria-label="Cerrar"
-                className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-foreground transition-colors hover:bg-accent-orange hover:text-background"
+                className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-accent-orange hover:text-background"
               >
                 ✕
               </button>

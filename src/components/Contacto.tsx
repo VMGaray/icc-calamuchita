@@ -5,7 +5,7 @@ import WhatsappButton from "./WhatsappButton";
 
 export default function Contacto() {
   return (
-    <section id="contacto" className="bg-[rgba(17,17,17,0.85)] px-6 py-24">
+    <section id="contacto" className="px-6 py-24">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -31,7 +31,7 @@ export default function Contacto() {
               href="https://instagram.com/icccalamuchita"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent-orange transition-colors hover:text-accent-orange/80"
+              className="font-semibold text-[#8a5a00] transition-colors hover:text-[#8a5a00]/80"
             >
               @icccalamuchita
             </a>
