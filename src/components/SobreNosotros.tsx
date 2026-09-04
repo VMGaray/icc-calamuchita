@@ -67,8 +67,8 @@ export default function SobreNosotros() {
             Ing. César Carbone
           </p>
           <p className="text-muted sm:text-lg">
-            [Breve trayectoria del Ing. César Carbone — años de experiencia,
-            especialización y formación, a confirmar con el cliente]
+            Ingeniero Civil e Ingeniero Hidráulico (UTN Facultad Regional Rosario).
+             Con más de 20 años de trayectoria como Jefe de Obra en proyectos de gran escala para empresas como YPF, Barrick Gold, POSCO, Livent, UPM y Yamana Gold, en obras de movimiento de suelos, fundaciones civiles y construcción de piletas industriales en distintos puntos del país y la región. Hoy pone esa experiencia al servicio de cada proyecto en el Valle de Calamuchita.
           </p>
           <a
             href="https://www.linkedin.com/in/césar-carbone-b4778255/"
