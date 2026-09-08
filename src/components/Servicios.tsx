@@ -169,68 +169,70 @@ export default function Servicios() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative flex max-h-[90vh] w-full max-w-3xl flex-col gap-4 overflow-y-auto rounded-lg border border-border bg-surface p-4 sm:p-6"
+              className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-lg border border-border bg-surface"
             >
               <button
                 type="button"
                 onClick={() => setSelected(null)}
                 aria-label="Cerrar"
-                className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-accent-orange hover:text-background"
+                className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white ring-1 ring-white/20 backdrop-blur transition-colors hover:bg-accent-orange hover:text-background"
               >
                 ✕
               </button>
 
-              <h3 className="pr-10 text-lg font-semibold text-foreground">
-                {selected.title}
-              </h3>
+              <div className="flex flex-col gap-4 overflow-y-auto p-4 sm:p-6">
+                <h3 className="pr-10 text-lg font-semibold text-foreground">
+                  {selected.title}
+                </h3>
 
-              {selected.explainer && (
-                <div className="flex flex-col gap-4">
-                  <h4 className="text-base font-semibold text-foreground">
-                    {selected.explainer.title}
-                  </h4>
+                {selected.explainer && (
+                  <div className="flex flex-col gap-4">
+                    <h4 className="text-base font-semibold text-foreground">
+                      {selected.explainer.title}
+                    </h4>
 
-                  <div className="relative aspect-[3/2] w-full overflow-hidden rounded-lg border border-border bg-black/20">
-                    <Image
-                      src={selected.explainer.image.src}
-                      alt={selected.explainer.image.alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 42rem"
-                      className="object-contain"
-                    />
+                    <div className="relative aspect-[3/2] w-full overflow-hidden rounded-lg border border-border bg-black/20">
+                      <Image
+                        src={selected.explainer.image.src}
+                        alt={selected.explainer.image.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 42rem"
+                        className="object-contain"
+                      />
+                    </div>
+
+                    <ol className="flex flex-col gap-3">
+                      {selected.explainer.steps.map((step) => (
+                        <li key={step.heading} className="text-sm text-muted">
+                          <span className="font-semibold text-foreground">
+                            {step.heading}
+                          </span>{" "}
+                          — {step.body}
+                        </li>
+                      ))}
+                    </ol>
                   </div>
+                )}
 
-                  <ol className="flex flex-col gap-3">
-                    {selected.explainer.steps.map((step) => (
-                      <li key={step.heading} className="text-sm text-muted">
-                        <span className="font-semibold text-foreground">
-                          {step.heading}
-                        </span>{" "}
-                        — {step.body}
-                      </li>
-                    ))}
-                  </ol>
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-black">
+                  <iframe
+                    src={selected.video.embedUrl}
+                    title={selected.title}
+                    className="absolute inset-0 h-full w-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
-              )}
 
-              <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-black">
-                <iframe
-                  src={selected.video.embedUrl}
-                  title={selected.title}
-                  className="absolute inset-0 h-full w-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                <a
+                  href={selected.video.infoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-fit items-center gap-2 self-center rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent-orange hover:text-accent-orange sm:self-start"
+                >
+                  Conocé más sobre Waterplast
+                </a>
               </div>
-
-              <a
-                href={selected.video.infoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex w-fit items-center gap-2 self-center rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent-orange hover:text-accent-orange sm:self-start"
-              >
-                Conocé más sobre Waterplast
-              </a>
             </motion.div>
           </motion.div>
         )}
