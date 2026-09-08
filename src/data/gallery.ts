@@ -14,9 +14,9 @@ export const galleryData: Record<GalleryCategory, string[]> = {
     (_, i) => `/gallery/piletas/piletas-${String(i + 1).padStart(2, "0")}.webp`
   ),
   "tratamiento-residuales": Array.from(
-    { length: 0 },
+    { length: 3 },
     (_, i) =>
-      `/gallery/tratamiento-residuales/tratamiento-residuales-${String(i + 1).padStart(2, "0")}.webp`
+      `/gallery/tratamiento-residuales/tratamiento-${String(i + 1).padStart(2, "0")}.webp`
   ),
 };
 

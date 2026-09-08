@@ -1,12 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Servicio = {
   title: string;
   description: string;
   icon: React.ReactNode;
+  explainer?: {
+    title: string;
+    image: { src: string; alt: string };
+    steps: { heading: string; body: string }[];
+  };
   video?: {
     embedUrl: string;
     infoUrl: string;
@@ -62,6 +68,28 @@ const servicios: Servicio[] = [
         <path d="M8 21h8" />
       </IconWrapper>
     ),
+    explainer: {
+      title:
+        "Cómo funciona nuestro sistema de Tratamiento de Aguas Residuales",
+      image: {
+        src: "/gallery/tratamiento-residuales/tratamiento-01.webp",
+        alt: "Diagrama en corte de una vivienda mostrando las etapas del sistema de tratamiento de aguas residuales",
+      },
+      steps: [
+        {
+          heading: "Separación y Descomposición Natural",
+          body: "donde se separan los sólidos más gruesos y se inicia la digestión anaeróbica (en ausencia de oxígeno) de la materia orgánica.",
+        },
+        {
+          heading: "Tratamiento Biológico",
+          body: "donde los microbios y microorganismos forman láminas biológicas dentro del reactor biológico. Utiliza discos móviles para facilitar el contacto entre el agua y la biomasa que permiten eliminar contaminantes orgánicos de manera eficiente y sostenible.",
+        },
+        {
+          heading: "Filtración en el Suelo",
+          body: "El agua previamente tratada se distribuye en un campo de infiltración a través de los túneles de infiltración, dispuestos sobre un lecho de piedras, arena o grava. Al percolar por este material filtrante, se promueve la oxidación de compuestos nitrogenados, iniciando el proceso de nitrificación. Finalmente, el agua filtrada se infiltra en el suelo, donde se completa de manera natural el proceso de depuración, garantizando una descarga limpia y segura para el medio ambiente.",
+        },
+      ],
+    },
     video: {
       embedUrl: "https://www.youtube.com/embed/sDtqv5k9PPw",
       infoUrl: "https://youtu.be/sDtqv5k9PPw?si=Z2kcpp0KLe7yFTK_",
@@ -141,7 +169,7 @@ export default function Servicios() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative flex w-full max-w-3xl flex-col gap-4 rounded-lg border border-border bg-surface p-4 sm:p-6"
+              className="relative flex max-h-[90vh] w-full max-w-3xl flex-col gap-4 overflow-y-auto rounded-lg border border-border bg-surface p-4 sm:p-6"
             >
               <button
                 type="button"
@@ -155,6 +183,35 @@ export default function Servicios() {
               <h3 className="pr-10 text-lg font-semibold text-foreground">
                 {selected.title}
               </h3>
+
+              {selected.explainer && (
+                <div className="flex flex-col gap-4">
+                  <h4 className="text-base font-semibold text-foreground">
+                    {selected.explainer.title}
+                  </h4>
+
+                  <div className="relative aspect-[3/2] w-full overflow-hidden rounded-lg border border-border bg-black/20">
+                    <Image
+                      src={selected.explainer.image.src}
+                      alt={selected.explainer.image.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 42rem"
+                      className="object-contain"
+                    />
+                  </div>
+
+                  <ol className="flex flex-col gap-3">
+                    {selected.explainer.steps.map((step) => (
+                      <li key={step.heading} className="text-sm text-muted">
+                        <span className="font-semibold text-foreground">
+                          {step.heading}
+                        </span>{" "}
+                        — {step.body}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
 
               <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-black">
                 <iframe
