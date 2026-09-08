@@ -12,6 +12,7 @@ type Servicio = {
     logo: { src: string; alt: string };
     text: string;
     image: { src: string; alt: string };
+    link: { href: string; label: string };
   };
   explainer?: {
     title: string;
@@ -51,6 +52,10 @@ const servicios: Servicio[] = [
       image: {
         src: "/brand/piletas-moldear.webp",
         alt: "Piscina construida con sistema Moldear",
+      },
+      link: {
+        href: "https://www.moldear.com.ar/",
+        label: "Conocé más sobre Moldear Piscinas",
       },
     },
   },
@@ -222,6 +227,15 @@ export default function Servicios() {
                         className="object-cover"
                       />
                     </div>
+
+                    <a
+                      href={selected.brand.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex w-fit items-center gap-2 self-center rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent-orange hover:text-accent-orange sm:self-start"
+                    >
+                      {selected.brand.link.label}
+                    </a>
                   </div>
                 )}
 
