@@ -60,23 +60,16 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative flex items-center justify-center"
-        style={{
-          width: "clamp(6rem, 18vw, 12.5rem)",
-          height: "clamp(6rem, 18vw, 12.5rem)",
-        }}
+        className="relative w-full max-w-[280px] sm:max-w-[350px] lg:max-w-[420px]"
       >
-        {/* rgba mirrors --accent-orange (#f0b000); box-shadow can't read a CSS var's alpha channel */}
-        <div className="absolute inset-0 rounded-full shadow-[0_0_70px_22px_rgba(240,176,0,0.35)]" />
-        <div className="relative h-full w-full overflow-hidden rounded-full">
-          <Image
-            src="/icc-logo1a.webp"
-            alt="ICC - Ing. Carbone Construcciones"
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
+        <Image
+          src="/icc-logo-horizontal-white.png"
+          alt="ICC - Ing. Carbone Construcciones"
+          width={1600}
+          height={414}
+          priority
+          className="h-auto w-full"
+        />
       </motion.div>
 
       <motion.div
@@ -85,14 +78,8 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.15 }}
         className="flex flex-col gap-3"
       >
-        {/* Hero excepción: fondo de video con overlay oscuro, texto claro y
-            acento amarillo de marca (no aplica el esquema amarillo global). */}
-        <h1 className="font-display text-5xl tracking-wide text-white sm:text-7xl lg:text-8xl">
-          ICC{" "}
-          <span className="text-[#f0b000] [text-shadow:0_0_30px_rgba(240,176,0,0.45)]">
-            CALAMUCHITA
-          </span>
-        </h1>
+        {/* Hero excepción: fondo de video con overlay oscuro y texto claro
+            (no aplica el esquema amarillo global). */}
         <p className="text-lg text-white/80 sm:text-xl">
           Movimiento de suelo, piscinas y saneamiento en el Valle de Calamuchita
         </p>
