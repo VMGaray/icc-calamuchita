@@ -94,7 +94,7 @@ export default function Hero() {
           </span>
         </h1>
         <p className="text-lg text-white/80 sm:text-xl">
-          Movimiento de suelo, piletas y saneamiento en el Valle de Calamuchita
+          Movimiento de suelo, piscinas y saneamiento en el Valle de Calamuchita
         </p>
       </motion.div>
 

@@ -1,6 +1,6 @@
 export type GalleryCategory =
   | "movimiento-suelos"
-  | "piletas"
+  | "piscinas"
   | "tratamiento-residuales";
 
 export const galleryData: Record<GalleryCategory, string[]> = {
@@ -9,9 +9,9 @@ export const galleryData: Record<GalleryCategory, string[]> = {
     (_, i) =>
       `/gallery/movimiento-suelos/movimiento-${String(i + 1).padStart(2, "0")}.webp`
   ),
-  piletas: Array.from(
+  piscinas: Array.from(
     { length: 0 },
-    (_, i) => `/gallery/piletas/piletas-${String(i + 1).padStart(2, "0")}.webp`
+    (_, i) => `/gallery/piscinas/piscinas-${String(i + 1).padStart(2, "0")}.webp`
   ),
   "tratamiento-residuales": Array.from(
     { length: 3 },
@@ -23,6 +23,6 @@ export const galleryData: Record<GalleryCategory, string[]> = {
 export const galleryFilters: { key: "todo" | GalleryCategory; label: string }[] = [
   { key: "todo", label: "Todo" },
   { key: "movimiento-suelos", label: "Movimiento de suelos" },
-  { key: "piletas", label: "Piletas" },
+  { key: "piscinas", label: "Piscinas" },
   { key: "tratamiento-residuales", label: "Tratamiento de aguas residuales" },
 ];

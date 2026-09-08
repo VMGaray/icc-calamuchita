@@ -20,7 +20,7 @@ export default function SobreNosotros() {
           <p className="text-muted sm:text-lg">
             ICC Calamuchita — Ing. Carbone Construcciones — es una empresa del
             Valle de Calamuchita especializada en movimiento de suelos,
-            construcción de piletas y tratamiento de aguas residuales. Contamos
+            construcción de piscinas y tratamiento de aguas residuales. Contamos
             con maquinaria propia y acompañamos cada proyecto de principio a
             fin, con un servicio prolijo, responsable y adaptado a las
             necesidades de cada cliente.
@@ -28,7 +28,7 @@ export default function SobreNosotros() {
 
           <ul className="flex flex-col gap-2 text-left text-muted sm:text-lg">
             <li>• Movimiento de suelos</li>
-            <li>• Construcción de piletas</li>
+            <li>• Construcción de piscinas</li>
             <li>• Tratamiento de aguas residuales</li>
           </ul>
         </motion.div>
@@ -68,7 +68,7 @@ export default function SobreNosotros() {
           </p>
           <p className="text-muted sm:text-lg">
             Ingeniero Civil e Ingeniero Hidráulico (UTN Facultad Regional Rosario).
-             Con más de 20 años de trayectoria como Jefe de Obra en proyectos de gran escala para empresas como YPF, Barrick Gold, POSCO, Livent, UPM y Yamana Gold, en obras de movimiento de suelos, fundaciones civiles y construcción de piletas industriales en distintos puntos del país y la región. Hoy pone esa experiencia al servicio de cada proyecto en el Valle de Calamuchita.
+             Con más de 20 años de trayectoria como Jefe de Obra en proyectos de gran escala para empresas como YPF, Barrick Gold, POSCO, Livent, UPM y Yamana Gold, en obras de movimiento de suelos, fundaciones civiles y construcción de piscinas industriales en distintos puntos del país y la región. Hoy pone esa experiencia al servicio de cada proyecto en el Valle de Calamuchita.
           </p>
           <a
             href="https://www.linkedin.com/in/césar-carbone-b4778255/"

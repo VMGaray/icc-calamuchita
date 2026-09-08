@@ -22,8 +22,8 @@ const trabajos: Trabajo[] = [
   },
   {
     id: 2,
-    title: "Piletas",
-    category: "piletas",
+    title: "Piscinas",
+    category: "piscinas",
     image: null,
   },
   {

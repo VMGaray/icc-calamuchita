@@ -48,9 +48,9 @@ const servicios: Servicio[] = [
     ),
   },
   {
-    title: "Piletas",
+    title: "Piscinas",
     description:
-      "Construcción y mantenimiento de piletas, desde la excavación hasta la terminación final.",
+      "Construcción y mantenimiento de piscinas, desde la excavación hasta la terminación final.",
     icon: (
       <IconWrapper>
         <path d="M3 16c1.5-1.3 3-1.3 4.5 0s3 1.3 4.5 0 3-1.3 4.5 0 3 1.3 4.5 0" />
@@ -122,7 +122,7 @@ export default function Servicios() {
             NUESTROS SERVICIOS
           </h2>
           <p className="mt-3 text-muted">
-            Movimiento de suelos, piletas y saneamiento en el Valle de Calamuchita.
+            Movimiento de suelos, piscinas y saneamiento en el Valle de Calamuchita.
           </p>
         </motion.div>
 
