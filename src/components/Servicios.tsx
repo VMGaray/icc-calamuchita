@@ -162,14 +162,14 @@ export default function Servicios() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelected(null)}
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/85 p-6"
+            className="fixed inset-0 z-[60] flex items-start justify-center bg-black/85 px-4 pb-8 pt-28"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-lg border border-border bg-surface"
+              className="relative flex max-h-[calc(100dvh-9rem)] w-full max-w-3xl flex-col overflow-hidden rounded-lg border border-border bg-surface"
             >
               <button
                 type="button"
