@@ -79,6 +79,7 @@ export default function Hero() {
           "Movimiento de suelos",
           "Piscinas",
           "Tratamiento de aguas residuales",
+          "Redes de agua",
         ].map((label, i) => (
           <motion.span
             key={label}

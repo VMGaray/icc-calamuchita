@@ -22,9 +22,10 @@ const bigShouldersStencil = Big_Shoulders_Stencil({
 });
 
 export const metadata: Metadata = {
-  title: "ICC Calamuchita | Movimiento de suelos, piscinas y saneamiento",
+  title:
+    "ICC Calamuchita | Movimiento de suelos, piscinas, saneamiento y redes de agua",
   description:
-    "ICC Calamuchita - Movimiento de suelos, construcción de piscinas y tratamiento de aguas residuales en el Valle de Calamuchita, Córdoba.",
+    "ICC Calamuchita - Movimiento de suelos, construcción de piscinas, tratamiento de aguas residuales y redes de agua en el Valle de Calamuchita, Córdoba.",
 };
 
 export default function RootLayout({

@@ -168,7 +168,8 @@ export default function Servicios() {
             NUESTROS SERVICIOS
           </h2>
           <p className="mt-3 text-muted">
-            Movimiento de suelos, piscinas y saneamiento en el Valle de Calamuchita.
+            Movimiento de suelos, piscinas, tratamiento de aguas residuales y
+            redes de agua en el Valle de Calamuchita.
           </p>
         </motion.div>
 
