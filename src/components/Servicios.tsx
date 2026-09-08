@@ -23,6 +23,7 @@ type Servicio = {
     embedUrl: string;
     infoUrl: string;
   };
+  photos?: { src: string; alt: string }[];
 };
 
 const servicios: Servicio[] = [
@@ -34,6 +35,28 @@ const servicios: Servicio[] = [
       src: "/gallery/movimiento-suelos/movimiento-a.webp",
       alt: "Maquinaria de ICC Calamuchita realizando movimiento de suelos",
     },
+    photos: [
+      {
+        src: "/gallery/movimiento-suelos/movimiento-a.webp",
+        alt: "Trabajo de movimiento de suelos realizado por ICC Calamuchita",
+      },
+      {
+        src: "/gallery/movimiento-suelos/movimiento-01.webp",
+        alt: "Trabajo de movimiento de suelos realizado por ICC Calamuchita",
+      },
+      {
+        src: "/gallery/movimiento-suelos/movimiento-02.webp",
+        alt: "Trabajo de movimiento de suelos realizado por ICC Calamuchita",
+      },
+      {
+        src: "/gallery/movimiento-suelos/movimiento-03.webp",
+        alt: "Trabajo de movimiento de suelos realizado por ICC Calamuchita",
+      },
+      {
+        src: "/gallery/movimiento-suelos/movimiento-04.webp",
+        alt: "Trabajo de movimiento de suelos realizado por ICC Calamuchita",
+      },
+    ],
   },
   {
     title: "Piscinas",
@@ -102,11 +125,22 @@ const servicios: Servicio[] = [
       src: "/brand/redes-agua-01.webp",
       alt: "Instalación de redes de agua",
     },
+    photos: [
+      {
+        src: "/brand/redes-agua-01.webp",
+        alt: "Instalación de redes de agua realizada por ICC Calamuchita",
+      },
+    ],
   },
 ];
 
 function hasModal(servicio: Servicio) {
-  return Boolean(servicio.brand || servicio.explainer || servicio.video);
+  return Boolean(
+    servicio.brand ||
+      servicio.explainer ||
+      servicio.video ||
+      servicio.photos?.length
+  );
 }
 
 export default function Servicios() {
@@ -203,6 +237,29 @@ export default function Servicios() {
                 <h3 className="pr-10 text-lg font-semibold text-foreground">
                   {selected.title}
                 </h3>
+
+                {selected.photos && selected.photos.length > 0 && (
+                  <div
+                    className={`grid gap-3 ${
+                      selected.photos.length > 1 ? "sm:grid-cols-2" : ""
+                    }`}
+                  >
+                    {selected.photos.map((photo) => (
+                      <div
+                        key={photo.src}
+                        className="relative aspect-[3/2] w-full overflow-hidden rounded-lg border border-border bg-black/20"
+                      >
+                        <Image
+                          src={photo.src}
+                          alt={photo.alt}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 21rem"
+                          className="object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 {selected.brand && (
                   <div className="flex flex-col gap-4">
