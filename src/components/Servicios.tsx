@@ -30,7 +30,7 @@ const servicios: Servicio[] = [
     description:
       "Excavación, nivelación y relleno con maquinaria propia para obras y proyectos en todo el Valle de Calamuchita.",
     thumb: {
-      src: "/gallery/movimiento-suelos/movimiento-01.webp",
+      src: "/gallery/movimiento-suelos/movimiento-a.webp",
       alt: "Maquinaria de ICC Calamuchita realizando movimiento de suelos",
     },
   },
