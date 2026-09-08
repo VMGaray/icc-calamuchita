@@ -6,7 +6,6 @@ import Image from "next/image";
 const links = [
   { href: "#hero", label: "Inicio" },
   { href: "#servicios", label: "Servicios" },
-  { href: "#destacados", label: "Destacados" },
   // Sección Galería desactivada por ahora — descomentar junto con <Galeria /> en page.tsx.
   // { href: "#galeria", label: "Galería" },
   { href: "#nosotros", label: "Nosotros" },
