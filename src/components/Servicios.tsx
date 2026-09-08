@@ -7,7 +7,12 @@ import { motion, AnimatePresence } from "framer-motion";
 type Servicio = {
   title: string;
   description: string;
-  icon: React.ReactNode;
+  thumb: { src: string; alt: string };
+  brand?: {
+    logo: { src: string; alt: string };
+    text: string;
+    image: { src: string; alt: string };
+  };
   explainer?: {
     title: string;
     image: { src: string; alt: string };
@@ -19,55 +24,44 @@ type Servicio = {
   };
 };
 
-function IconWrapper({ children }: { children: React.ReactNode }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-8 w-8 text-accent-orange"
-    >
-      {children}
-    </svg>
-  );
-}
-
 const servicios: Servicio[] = [
   {
     title: "Movimiento de suelos",
     description:
       "Excavación, nivelación y relleno con maquinaria propia para obras y proyectos en todo el Valle de Calamuchita.",
-    icon: (
-      <IconWrapper>
-        <path d="M2 20h20M4 20l3-7h4l2 4h4l3-4" />
-        <path d="M9 13V7l3-3 3 3v6" />
-      </IconWrapper>
-    ),
+    thumb: {
+      src: "/gallery/movimiento-suelos/movimiento-01.webp",
+      alt: "Maquinaria de ICC Calamuchita realizando movimiento de suelos",
+    },
   },
   {
     title: "Piscinas",
     description:
       "Construcción y mantenimiento de piscinas, desde la excavación hasta la terminación final.",
-    icon: (
-      <IconWrapper>
-        <path d="M3 16c1.5-1.3 3-1.3 4.5 0s3 1.3 4.5 0 3-1.3 4.5 0 3 1.3 4.5 0" />
-        <rect x="4" y="4" width="16" height="10" rx="1.5" />
-      </IconWrapper>
-    ),
+    thumb: {
+      src: "/brand/piletas-moldear.webp",
+      alt: "Piscina construida con sistema Moldear",
+    },
+    brand: {
+      logo: {
+        src: "/brand/moldear-logo.png",
+        alt: "Moldear Piscinas",
+      },
+      text: "Trabajamos con Moldear Piscinas, que garantiza sus productos a través de la mejora continua y procesos certificados por normativas internacionales.",
+      image: {
+        src: "/brand/piletas-moldear.webp",
+        alt: "Piscina construida con sistema Moldear",
+      },
+    },
   },
   {
     title: "Tratamiento de aguas residuales",
     description:
       "Diseño e instalación de sistemas de saneamiento y tratamiento de efluentes para viviendas y establecimientos.",
-    icon: (
-      <IconWrapper>
-        <path d="M12 2c3 4 5 7.2 5 10a5 5 0 0 1-10 0c0-2.8 2-6 5-10Z" />
-        <path d="M8 21h8" />
-      </IconWrapper>
-    ),
+    thumb: {
+      src: "/gallery/tratamiento-residuales/tratamiento-01.webp",
+      alt: "Sistema de tratamiento de aguas residuales",
+    },
     explainer: {
       title:
         "Cómo funciona nuestro sistema de Tratamiento de Aguas Residuales",
@@ -95,7 +89,20 @@ const servicios: Servicio[] = [
       infoUrl: "https://youtu.be/sDtqv5k9PPw?si=Z2kcpp0KLe7yFTK_",
     },
   },
+  {
+    title: "Redes de agua",
+    description:
+      "Instalación y mantenimiento de redes de agua para obras y proyectos en el Valle de Calamuchita.",
+    thumb: {
+      src: "/brand/redes-agua-01.webp",
+      alt: "Instalación de redes de agua",
+    },
+  },
 ];
+
+function hasModal(servicio: Servicio) {
+  return Boolean(servicio.brand || servicio.explainer || servicio.video);
+}
 
 export default function Servicios() {
   const [selected, setSelected] = useState<Servicio | null>(null);
@@ -126,25 +133,32 @@ export default function Servicios() {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {servicios.map((servicio, i) => {
-            const Wrapper = servicio.video ? motion.button : motion.div;
+            const clickable = hasModal(servicio);
+            const Wrapper = clickable ? motion.button : motion.div;
             return (
               <Wrapper
                 key={servicio.title}
-                type={servicio.video ? "button" : undefined}
-                onClick={
-                  servicio.video ? () => setSelected(servicio) : undefined
-                }
+                type={clickable ? "button" : undefined}
+                onClick={clickable ? () => setSelected(servicio) : undefined}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
+                transition={{ duration: 0.5, delay: (i % 4) * 0.1 }}
                 className={`flex flex-col gap-4 rounded-lg border border-border bg-surface p-6 text-left transition-colors hover:border-accent-orange ${
-                  servicio.video ? "cursor-pointer" : ""
+                  clickable ? "cursor-pointer" : ""
                 }`}
               >
-                {servicio.icon}
+                <div className="relative h-16 w-16 overflow-hidden rounded-lg border border-border">
+                  <Image
+                    src={servicio.thumb.src}
+                    alt={servicio.thumb.alt}
+                    fill
+                    sizes="64px"
+                    className="object-cover"
+                  />
+                </div>
                 <h3 className="text-lg font-semibold text-foreground">
                   {servicio.title}
                 </h3>
@@ -156,7 +170,7 @@ export default function Servicios() {
       </div>
 
       <AnimatePresence>
-        {selected?.video && (
+        {selected && hasModal(selected) && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -184,6 +198,32 @@ export default function Servicios() {
                 <h3 className="pr-10 text-lg font-semibold text-foreground">
                   {selected.title}
                 </h3>
+
+                {selected.brand && (
+                  <div className="flex flex-col gap-4">
+                    <div className="relative h-24 w-full overflow-hidden rounded-lg bg-black">
+                      <Image
+                        src={selected.brand.logo.src}
+                        alt={selected.brand.logo.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 42rem"
+                        className="object-contain p-4"
+                      />
+                    </div>
+
+                    <p className="text-sm text-muted">{selected.brand.text}</p>
+
+                    <div className="relative aspect-[3/2] w-full overflow-hidden rounded-lg border border-border bg-black/20">
+                      <Image
+                        src={selected.brand.image.src}
+                        alt={selected.brand.image.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 42rem"
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                )}
 
                 {selected.explainer && (
                   <div className="flex flex-col gap-4">
@@ -214,24 +254,28 @@ export default function Servicios() {
                   </div>
                 )}
 
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-black">
-                  <iframe
-                    src={selected.video.embedUrl}
-                    title={selected.title}
-                    className="absolute inset-0 h-full w-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
+                {selected.video && (
+                  <>
+                    <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-black">
+                      <iframe
+                        src={selected.video.embedUrl}
+                        title={selected.title}
+                        className="absolute inset-0 h-full w-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
 
-                <a
-                  href={selected.video.infoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex w-fit items-center gap-2 self-center rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent-orange hover:text-accent-orange sm:self-start"
-                >
-                  Conocé más sobre Waterplast
-                </a>
+                    <a
+                      href={selected.video.infoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex w-fit items-center gap-2 self-center rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent-orange hover:text-accent-orange sm:self-start"
+                    >
+                      Conocé más sobre Waterplast
+                    </a>
+                  </>
+                )}
               </div>
             </motion.div>
           </motion.div>
