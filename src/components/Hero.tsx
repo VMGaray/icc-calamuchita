@@ -72,18 +72,25 @@ export default function Hero() {
         />
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.15 }}
-        className="flex flex-col gap-3"
-      >
-        {/* Hero excepción: fondo de video con overlay oscuro y texto claro
-            (no aplica el esquema amarillo global). */}
-        <p className="text-lg text-white/80 sm:text-xl">
-          Movimiento de suelo, piscinas y saneamiento en el Valle de Calamuchita
-        </p>
-      </motion.div>
+      {/* Hero excepción: fondo de video con overlay oscuro y texto claro
+          (no aplica el esquema amarillo global). */}
+      <div className="flex flex-wrap justify-center gap-3">
+        {[
+          "Movimiento de suelos",
+          "Piscinas",
+          "Tratamiento de aguas residuales",
+        ].map((label, i) => (
+          <motion.span
+            key={label}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
+            className="rounded-full border border-[#f0b000]/40 bg-[#f0b000]/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm sm:text-base"
+          >
+            {label}
+          </motion.span>
+        ))}
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
