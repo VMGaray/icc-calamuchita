@@ -172,23 +172,25 @@ export default function Servicios() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: (i % 4) * 0.1 }}
-                className={`flex flex-col gap-4 rounded-lg border border-border bg-surface p-6 text-left transition-colors hover:border-accent-orange ${
+                className={`flex flex-col overflow-hidden rounded-lg border border-border bg-surface text-left transition-colors hover:border-accent-orange ${
                   clickable ? "cursor-pointer" : ""
                 }`}
               >
-                <div className="relative h-16 w-16 overflow-hidden rounded-lg border border-border">
+                <div className="relative h-44 w-full overflow-hidden rounded-t-lg">
                   <Image
                     src={servicio.thumb.src}
                     alt={servicio.thumb.alt}
                     fill
-                    sizes="64px"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover"
                   />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground">
-                  {servicio.title}
-                </h3>
-                <p className="text-sm text-muted">{servicio.description}</p>
+                <div className="flex flex-col gap-3 p-6">
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {servicio.title}
+                  </h3>
+                  <p className="text-sm text-muted">{servicio.description}</p>
+                </div>
               </Wrapper>
             );
           })}
