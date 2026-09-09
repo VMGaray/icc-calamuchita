@@ -49,6 +49,25 @@ export const metadata: Metadata = {
   },
 };
 
+// Datos estructurados Schema.org para SEO local (Google Rich Results).
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  name: "ICC Calamuchita - Ing. Carbone Construcciones",
+  image: ogImageUrl,
+  url: siteUrl,
+  telephone: "+543546535551",
+  areaServed: "Valle de Calamuchita, Córdoba, Argentina",
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "Córdoba",
+    addressCountry: "AR",
+  },
+  description:
+    "Movimiento de suelos, construcción de piscinas, tratamiento de aguas residuales y redes de agua en el Valle de Calamuchita.",
+  sameAs: ["https://www.instagram.com/icc.calamuchita/"],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -60,6 +79,10 @@ export default function RootLayout({
       className={`${inter.variable} ${bigShouldersStencil.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <GridBackground />
         <Navbar />
         <main className="relative z-10 flex-1">{children}</main>
