@@ -21,11 +21,32 @@ const bigShouldersStencil = Big_Shoulders_Stencil({
   adjustFontFallback: false,
 });
 
+const siteTitle =
+  "ICC Calamuchita | Movimiento de suelos, piscinas, tratamiento de aguas residuales y redes de agua";
+const siteDescription =
+  "ICC Calamuchita - Ing. Carbone Construcciones. Movimiento de suelos, construcción de piscinas, tratamiento de aguas residuales y redes de agua en el Valle de Calamuchita.";
+const siteUrl = "https://icc-calamuchita.com.ar";
+const ogImageUrl = `${siteUrl}/og-image.jpg`;
+
 export const metadata: Metadata = {
-  title:
-    "ICC Calamuchita | Movimiento de suelos, piscinas, saneamiento y redes de agua",
-  description:
-    "ICC Calamuchita - Movimiento de suelos, construcción de piscinas, tratamiento de aguas residuales y redes de agua en el Valle de Calamuchita, Córdoba.",
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    siteName: "ICC Calamuchita",
+    images: [{ url: ogImageUrl, width: 1200, height: 630 }],
+    locale: "es_AR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: [ogImageUrl],
+  },
 };
 
 export default function RootLayout({
