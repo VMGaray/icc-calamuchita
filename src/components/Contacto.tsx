@@ -11,7 +11,7 @@ export default function Contacto() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.6 }}
-        className="mx-auto flex max-w-4xl flex-col items-center gap-8 rounded-lg border border-border bg-surface p-10 text-center"
+        className="mx-auto flex max-w-4xl flex-col items-center gap-8 rounded-lg border border-border bg-surface p-6 text-center sm:p-10"
       >
         <h2 className="font-display text-4xl tracking-wide text-foreground sm:text-5xl">
           CONTACTO

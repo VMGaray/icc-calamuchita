@@ -29,6 +29,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Compensa el navbar fijo (~72px) para que los anchors no queden tapados. */
+  scroll-padding-top: 5rem;
 }
 
 body {

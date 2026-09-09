@@ -12,16 +12,15 @@ export default function GridBackground() {
     if (!ctx) return;
 
     let t = 0;
-    let animId: number;
+    let animId = 0;
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
+    // Respeta la preferencia del sistema: sin animación pinta un frame fijo
+    // y no arranca el loop de requestAnimationFrame (ahorro de batería/CPU).
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-    const draw = () => {
+    const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const cols = 20;
       const rows = 14;
@@ -56,12 +55,25 @@ export default function GridBackground() {
           }
         }
       }
-
-      t += 0.018;
-      animId = requestAnimationFrame(draw);
     };
 
-    draw();
+    const tick = () => {
+      render();
+      t += 0.018;
+      animId = requestAnimationFrame(tick);
+    };
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      if (reduceMotion) render();
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    if (reduceMotion) render();
+    else tick();
+
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);

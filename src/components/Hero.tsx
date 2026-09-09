@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen flex-col items-center justify-center gap-8 overflow-hidden px-6 text-center"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center gap-8 overflow-hidden px-6 text-center"
     >
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_center,rgba(26,26,26,0.7),rgba(10,10,10,0.7))]" />
 
