@@ -172,7 +172,12 @@ export default function Servicios() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: (i % 4) * 0.1 }}
-                className={`flex flex-col overflow-hidden rounded-lg border border-border bg-surface text-left transition-colors hover:border-accent-orange ${
+                whileHover={{
+                  scale: 1.05,
+                  y: -6,
+                  transition: { duration: 0.3, delay: 0 },
+                }}
+                className={`flex flex-col overflow-hidden rounded-lg border border-border bg-surface text-left shadow-md transition-[border-color,box-shadow] duration-300 hover:border-accent-orange hover:shadow-2xl ${
                   clickable ? "cursor-pointer" : ""
                 }`}
               >
