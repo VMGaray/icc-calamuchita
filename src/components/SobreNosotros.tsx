@@ -18,8 +18,8 @@ export default function SobreNosotros() {
             SOBRE NOSOTROS
           </h2>
           <p className="text-muted sm:text-lg">
-            ICC Calamuchita — Ing. Carbone Construcciones — es una empresa del
-            Valle de Calamuchita especializada en movimiento de suelos,
+            Ing. Carbone Construcciones es una empresa del Valle de
+            Calamuchita especializada en movimiento de suelos,
             construcción de piscinas, tratamiento de aguas residuales y redes de
             agua. Contamos con maquinaria propia y acompañamos cada proyecto de
             principio a fin, con un servicio prolijo, responsable y adaptado a

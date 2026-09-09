@@ -19,11 +19,13 @@ type Servicio = {
     image: { src: string; alt: string };
     steps: { heading: string; body: string }[];
   };
+  detail?: {
+    image: { src: string; alt: string };
+  };
   video?: {
     embedUrl: string;
     infoUrl: string;
   };
-  photos?: { src: string; alt: string }[];
 };
 
 const servicios: Servicio[] = [
@@ -35,28 +37,12 @@ const servicios: Servicio[] = [
       src: "/gallery/movimiento-suelos/movimiento-a.webp",
       alt: "Maquinaria de ICC Calamuchita realizando movimiento de suelos",
     },
-    photos: [
-      {
-        src: "/gallery/movimiento-suelos/movimiento-a.webp",
-        alt: "Trabajo de movimiento de suelos realizado por ICC Calamuchita",
-      },
-      {
+    detail: {
+      image: {
         src: "/gallery/movimiento-suelos/movimiento-01.webp",
         alt: "Trabajo de movimiento de suelos realizado por ICC Calamuchita",
       },
-      {
-        src: "/gallery/movimiento-suelos/movimiento-02.webp",
-        alt: "Trabajo de movimiento de suelos realizado por ICC Calamuchita",
-      },
-      {
-        src: "/gallery/movimiento-suelos/movimiento-03.webp",
-        alt: "Trabajo de movimiento de suelos realizado por ICC Calamuchita",
-      },
-      {
-        src: "/gallery/movimiento-suelos/movimiento-04.webp",
-        alt: "Trabajo de movimiento de suelos realizado por ICC Calamuchita",
-      },
-    ],
+    },
   },
   {
     title: "Piscinas",
@@ -68,7 +54,7 @@ const servicios: Servicio[] = [
     },
     brand: {
       logo: {
-        src: "/brand/moldear-logo.png",
+        src: "/brand/moldear-logo-new.png",
         alt: "Moldear Piscinas",
       },
       text: "Trabajamos con Moldear Piscinas, que garantiza sus productos a través de la mejora continua y procesos certificados por normativas internacionales.",
@@ -125,12 +111,12 @@ const servicios: Servicio[] = [
       src: "/brand/redes-agua-01.webp",
       alt: "Instalación de redes de agua",
     },
-    photos: [
-      {
+    detail: {
+      image: {
         src: "/brand/redes-agua-01.webp",
         alt: "Instalación de redes de agua realizada por ICC Calamuchita",
       },
-    ],
+    },
   },
 ];
 
@@ -139,7 +125,7 @@ function hasModal(servicio: Servicio) {
     servicio.brand ||
       servicio.explainer ||
       servicio.video ||
-      servicio.photos?.length
+      servicio.detail
   );
 }
 
@@ -239,32 +225,25 @@ export default function Servicios() {
                   {selected.title}
                 </h3>
 
-                {selected.photos && selected.photos.length > 0 && (
-                  <div
-                    className={`grid gap-3 ${
-                      selected.photos.length > 1 ? "sm:grid-cols-2" : ""
-                    }`}
-                  >
-                    {selected.photos.map((photo) => (
-                      <div
-                        key={photo.src}
-                        className="relative aspect-[3/2] w-full overflow-hidden rounded-lg border border-border bg-black/20"
-                      >
-                        <Image
-                          src={photo.src}
-                          alt={photo.alt}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 21rem"
-                          className="object-cover"
-                        />
-                      </div>
-                    ))}
+                {selected.detail && (
+                  <div className="flex flex-col gap-4">
+                    <div className="relative aspect-[3/2] w-full overflow-hidden rounded-lg border border-border bg-black/20">
+                      <Image
+                        src={selected.detail.image.src}
+                        alt={selected.detail.image.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 42rem"
+                        className="object-cover"
+                      />
+                    </div>
+
+                    <p className="text-sm text-muted">{selected.description}</p>
                   </div>
                 )}
 
                 {selected.brand && (
                   <div className="flex flex-col gap-4">
-                    <div className="relative h-24 w-full overflow-hidden rounded-lg bg-black">
+                    <div className="relative h-24 w-full overflow-hidden rounded-lg bg-[#1C9AD6]">
                       <Image
                         src={selected.brand.logo.src}
                         alt={selected.brand.logo.alt}
