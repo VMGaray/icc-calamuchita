@@ -39,7 +39,7 @@ const servicios: Servicio[] = [
     },
     detail: {
       image: {
-        src: "/gallery/movimiento-suelos/movimiento-01.webp",
+        src: "/gallery/movimiento-suelos/movimiento-a.webp",
         alt: "Trabajo de movimiento de suelos realizado por ICC Calamuchita",
       },
     },
