@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ICC Calamuchita
 
-## Getting Started
+Landing institucional de **ICC Calamuchita – Ing. Carbone Construcciones**: movimiento de
+suelos, construcción de piscinas, tratamiento de aguas residuales y redes de agua en el
+Valle de Calamuchita, Córdoba.
 
-First, run the development server:
+Sitio de una sola página con navegación por secciones ancla (`#hero`, `#servicios`,
+`#nosotros`, `#contacto`) y contacto directo por WhatsApp.
+
+## Stack
+
+| | |
+|---|---|
+| Framework | [Next.js 16](https://nextjs.org) (App Router, Turbopack) |
+| Runtime | React 19 |
+| Estilos | Tailwind CSS v4 (config vía `@theme` en `src/app/globals.css`) |
+| Animaciones | Framer Motion |
+| Carrusel | Embla Carousel |
+| Lenguaje | TypeScript |
+| Salida | Export estático (`output: "export"` → carpeta `out/`) |
+
+> **Nota:** este proyecto usa una versión de Next.js con cambios de API respecto de
+> releases anteriores. Ante la duda, consultá la guía correspondiente en
+> `node_modules/next/dist/docs/` antes de escribir código. Ver `AGENTS.md`.
+
+## Requisitos
+
+- Node.js ≥ 20.9
+- npm (o el gestor que prefieras)
+
+## Puesta en marcha
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrí [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script | Descripción |
+|---|---|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Build de producción → genera el sitio estático en `out/` |
+| `npm run start` | *No aplica* con `output: "export"`; servir `out/` con un host estático |
+| `npm run lint` | ESLint |
 
-## Learn More
+Chequeo de tipos sin emitir:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx tsc --noEmit
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estructura
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+  app/
+    layout.tsx      Layout raíz: fuentes, metadata (SEO / Open Graph / Twitter), JSON-LD
+    page.tsx        Composición de secciones de la home
+    globals.css     Tokens de diseño (colores de marca) y base de Tailwind
+    sitemap.ts      Genera /sitemap.xml (estático)
+    robots.ts       Genera /robots.txt (estático)
+  components/
+    Navbar.tsx          Barra fija con menú mobile
+    Hero.tsx            Portada con video de fondo que congela en foto al terminar
+    Servicios.tsx       Grilla de servicios con modales (marca / explicativo / video / detalle)
+    SobreNosotros.tsx   Sección "Nosotros"
+    Galeria.tsx         Galería filtrable (desactivada en page.tsx por ahora)
+    Contacto.tsx        Datos de contacto + WhatsApp
+    WhatsappButton.tsx  Botón reutilizable de WhatsApp
+    GridBackground.tsx  Fondo decorativo
+    Footer.tsx
+  data/
+    gallery.ts      Categorías y rutas de imágenes de la galería
+public/
+  brand/            Logos e imágenes de marcas asociadas (Moldear, etc.)
+  gallery/          Fotos de obra por categoría
+  videos/           Video del hero y posters
+  og-image.jpg      Imagen 1200×630 para previews en redes / WhatsApp
+```
 
-## Deploy on Vercel
+## Contenido
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Los textos e imágenes de los servicios están definidos como datos dentro de cada
+componente (por ejemplo, el array `servicios` en `src/components/Servicios.tsx`). Las
+fotos de la galería se listan en `src/data/gallery.ts` y viven en `public/gallery/<categoría>/`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+La sección **Galería** está desactivada: para reactivarla, descomentar `<Galeria />` en
+`src/app/page.tsx` y el link correspondiente en `src/components/Navbar.tsx`.
+
+## SEO
+
+- **Metadata** (title, description, Open Graph, Twitter Card) centralizada en
+  `src/app/layout.tsx` mediante la API de metadata de Next.js.
+- **Datos estructurados** JSON-LD (`schema.org/GeneralContractor`) inyectados en el
+  `<body>` desde `layout.tsx`.
+- **`sitemap.xml`** y **`robots.txt`** generados en build por `src/app/sitemap.ts` y
+  `src/app/robots.ts`. Ambos declaran `export const dynamic = "force-static"`, requisito
+  de `output: "export"`.
+- URL canónica del sitio: `https://icc-calamuchita.com.ar`.
+
+## Deploy
+
+```bash
+npm run build
+```
+
+Publicar el contenido de `out/` en cualquier hosting de estáticos (Vercel, Netlify,
+Cloudflare Pages, S3, etc.). Las imágenes se sirven sin optimización de Next
+(`images.unoptimized: true`).
